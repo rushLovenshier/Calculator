@@ -54,6 +54,8 @@ String previous, current, operator;
                 delete();
             }else if(selectedBtn == btnEquals){
                 calculate();
+            }else if(selectedBtn == btnDot){
+                appendToOutput(".");
             }
             updateOutput();
         }
@@ -61,7 +63,8 @@ String previous, current, operator;
 
 CalculatorBox(){
     super("Box Calculator");
-
+    current = "";
+    previous = "";
     JPanel mainPanel = new JPanel();
 
     //Create sub panels inside main panel
@@ -84,13 +87,15 @@ CalculatorBox(){
     btnDelete = new JButton("Delete");
     btnEquals = new JButton("=");
 
+    NumberBtnHandler numBtnHandler = new NumberBtnHandler();
+
     //Initialize, style and add action listeners to number buttons
     numBtn = new JButton[11];
     numBtn[10] = btnDot;
     for(int count=0; count<numBtn.length-1; count++){
         numBtn[count] = new JButton(String.valueOf(count));
         numBtn[count].setFont(new Font("Monospaced", Font.BOLD, 22));
-
+        numBtn[count].addActionListener(numBtnHandler);
     }
 
     //Style other buttons
@@ -102,6 +107,22 @@ CalculatorBox(){
     btnAdd.setFont(new Font("Monospaced", Font.BOLD, 22));
     btnMultiply.setFont(new Font("Monospaced", Font.BOLD,22));
     btnSubtract.setFont(new Font("Monospaced", Font.BOLD, 22));
+
+    OtherBtnHandler otherBtnHandler = new OtherBtnHandler();
+    OperatorBtnHandler opBtnHandler = new OperatorBtnHandler();
+    //Add action Listeners to other buttons
+    btnEquals.addActionListener(otherBtnHandler);
+    btnDelete.addActionListener(otherBtnHandler);
+    btnClear.addActionListener(otherBtnHandler);
+    btnDot.addActionListener(otherBtnHandler);
+
+    //Add action Listeners to other buttons
+    btnAdd.addActionListener(opBtnHandler);
+    btnSubtract.addActionListener(opBtnHandler);
+    btnMultiply.addActionListener(opBtnHandler);
+    btnDivide.addActionListener(opBtnHandler);
+
+
 
     //Style the output display
     output.setMaximumSize(new Dimension(185, 40));
@@ -152,10 +173,69 @@ CalculatorBox(){
 
     }
 
-    public void clear(){}
-    public void delete(){}
-    public void updateOutput(){}
-    public void appendToOutput(String text){}
-    public void selectOperator(String text){}
-    public void calculate(){}
+    public void clear(){
+        current = "";
+        previous = "";
+        operator = null;
+    }
+    public void delete(){
+        if(current.length() > 0){
+            current = current.substring(0, current.length()-1);
+        }
+    }
+    public void updateOutput(){
+        output.setText(current);
+    }
+
+    public void appendToOutput(String num){
+        //to avoid multiple dots
+        if (num.equals(".") && current.contains(".")){
+            return;
+        }
+        current+=num;
+    }
+
+    public void selectOperator(String newOperator){
+        if(current.isEmpty()){
+            operator = newOperator;
+            return;
+        }
+        if(!previous.isEmpty()){
+            calculate();
+        }
+
+        operator = newOperator;
+        previous = current;
+        current = "";
+    }
+
+    public void calculate(){
+        if(previous.length() < 1 || current.length() < 1){
+            return;
+        }
+
+        double result = 0.0;
+        double num1 = Double.parseDouble(previous);
+        double num2 = Double.parseDouble(current);
+
+        switch(operator){
+            case "*":
+                result = num1 * num2;
+                break;
+            case "+":
+                result = num1 + num2;
+                break;
+            case "-":
+                result = num1 - num2;
+                break;
+            case "÷":
+                if(num2!=0.0){result = num1/num2;}
+                break;
+            default:
+                break;
+        }
+        current = String.valueOf(result);
+        operator = null;
+        previous = "";
+    }
 }
