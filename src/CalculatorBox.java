@@ -33,7 +33,7 @@ CalculatorBox(){
 
     btnDot = new JButton(".");
     btnClear = new JButton("clear");
-    btnDelete = new JButton("D");
+    btnDelete = new JButton("Delete");
     btnEquals = new JButton("=");
 
     //Initialize, style and add action listeners to number buttons
@@ -98,6 +98,6 @@ CalculatorBox(){
     this.add(mainPanel);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setVisible(true);
-    this.setSize(205, 280);
+    this.setSize(290, 275);
     }
 }
