@@ -36,6 +36,23 @@ CalculatorBox(){
     btnDelete = new JButton("D");
     btnEquals = new JButton("=");
 
+    //Initialize, style and add action listeners to number buttons
+    numBtn = new JButton[11];
+    numBtn[10] = btnDot;
+    for(int count=0; count<numBtn.length-1; count++){
+        numBtn[count] = new JButton(String.valueOf(count));
+        numBtn[count].setFont(new Font("Monospaced", Font.BOLD, 22));
 
+    }
+
+    //Style other buttons
+    btnClear.setFont(new Font("Monospaced", Font.BOLD, 22));
+    btnDot.setFont(new Font("Monospaced", Font.BOLD, 22));
+    btnDivide.setFont((new Font("Monospaced", Font.BOLD, 22)));
+    btnDelete.setFont(new Font("Monospaced", Font.BOLD, 22));
+    btnEquals.setFont(new Font("Monospaced", Font.BOLD,22));
+    btnAdd.setFont(new Font("Monospaced", Font.BOLD, 22));
+    btnMultiply.setFont(new Font("Monospaced", Font.BOLD,22));
+    btnSubtract.setFont(new Font("Monospaced", Font.BOLD, 22));
 }
 }
