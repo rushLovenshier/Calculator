@@ -58,6 +58,7 @@ CalculatorBox(){
     //Style the output display
     output.setMaximumSize(new Dimension(185, 40));
     output.setFont(new Font("Monospaced", Font.BOLD, 27));
+    output.setEnabled(false);
     output.setDisabledTextColor(new Color(0, 10, 0));
     output.setMargin(new Insets(0,5,0,0));
     output.setText("0");
@@ -98,6 +99,8 @@ CalculatorBox(){
     this.add(mainPanel);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setVisible(true);
-    this.setSize(290, 275);
+    this.setSize(300, 275);
+    this.setResizable(false);
+
     }
 }
