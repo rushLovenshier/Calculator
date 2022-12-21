@@ -7,7 +7,7 @@ import java.awt.*;
  */
 public class CalculatorBox extends JFrame {
 JButton btnAdd, btnSubtract, btnDivide, btnMultiply, btnClear, btnDelete, btnDot, btnEquals;
-JButton numBtn[];
+JButton[] numBtn;
 JTextField output;
 String previous, current, operator;
 
