@@ -5,5 +5,15 @@ import javax.swing.*;
 
  */
 public class CalculatorBox extends JFrame {
+JButton btnAdd, btnSubtract, btnDivide, btnMultiple, btnClear, btnDot;
+JButton numBtn[];
+JTextField output;
+String previous, current, operator;
 
+CalculatorBox(){
+    super("Box Calculator");
+
+    JPanel mainPanel = new JPanel();
+
+}
 }
