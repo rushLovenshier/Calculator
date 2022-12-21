@@ -237,5 +237,16 @@ CalculatorBox(){
         current = String.valueOf(result);
         operator = null;
         previous = "";
+        processOutputNumber();
+    }
+
+    public void processOutputNumber(){
+        if(current.length() > 0){
+            String intPart = current.split("\\.")[0];
+            String decPart = current.split("\\.")[1];
+            if (decPart.equals("0")){
+                current = intPart;
+            }
+        }
     }
 }
