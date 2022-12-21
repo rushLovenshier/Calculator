@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  * @author ruwandigeekiyanage on 2022-12-21.
@@ -10,6 +11,53 @@ JButton btnAdd, btnSubtract, btnDivide, btnMultiply, btnClear, btnDelete, btnDot
 JButton[] numBtn;
 JTextField output;
 String previous, current, operator;
+
+    private class NumberBtnHandler implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e){
+            JButton selectedBtn = (JButton) e.getSource();
+            for(JButton btn : numBtn){
+                if(selectedBtn == btn){
+                   appendToOutput(btn.getText());
+                    updateOutput();
+                }
+            }
+        }
+    }
+
+    private class OperatorBtnHandler implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JButton selectedBtn = (JButton) e.getSource();
+            if(selectedBtn == btnAdd){
+                selectOperator(btnAdd.getText());
+            }else if (selectedBtn == btnDelete){
+                selectOperator(btnDelete.getText());
+            }else if (selectedBtn == btnDivide){
+                selectOperator(btnDivide.getText());
+            }else if (selectedBtn == btnMultiply){
+                selectOperator((btnMultiply.getText()));
+            }
+            updateOutput();
+
+        }
+    }
+
+    private class OtherBtnHandler implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JButton selectedBtn = (JButton) e.getSource();
+            if(selectedBtn == btnClear){
+                clear();
+            }else if(selectedBtn == btnDelete){
+                delete();
+            }else if(selectedBtn == btnEquals){
+                calculate();
+            }
+            updateOutput();
+        }
+    }
 
 CalculatorBox(){
     super("Box Calculator");
@@ -103,4 +151,11 @@ CalculatorBox(){
     this.setResizable(false);
 
     }
+
+    public void clear(){}
+    public void delete(){}
+    public void updateOutput(){}
+    public void appendToOutput(String text){}
+    public void selectOperator(String text){}
+    public void calculate(){}
 }
