@@ -54,5 +54,12 @@ CalculatorBox(){
     btnAdd.setFont(new Font("Monospaced", Font.BOLD, 22));
     btnMultiply.setFont(new Font("Monospaced", Font.BOLD,22));
     btnSubtract.setFont(new Font("Monospaced", Font.BOLD, 22));
+
+    //Style the output display
+    output.setMaximumSize(new Dimension(185, 40));
+    output.setFont(new Font("Monospaced", Font.BOLD, 27));
+    output.setDisabledTextColor(new Color(0, 10, 0));
+    output.setMargin(new Insets(0,5,0,0));
+    output.setText("0");
 }
 }
